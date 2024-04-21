@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Button _increaseReputationButton;
 
-    public Action<int> ReputationChanged;
+    public event Action<int> ReputationChanged; //Не совсем понимаю важности event. Без работает так же, нет?
+    //Если не сложно)
 
     private int reputation = 0;
 
