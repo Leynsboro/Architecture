@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Example : MonoBehaviour
+public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private TraderBehaviourSwitcher _traderBeh;

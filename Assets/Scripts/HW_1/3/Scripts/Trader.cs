@@ -11,6 +11,7 @@ public class Trader : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _trader.OfferProduct();
+        if (other.TryGetComponent(out IBuyer buyer))
+            _trader.OfferProduct();
     }
 }

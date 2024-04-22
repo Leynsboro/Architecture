@@ -5,6 +5,10 @@ public class TraderBehaviourSwitcher : MonoBehaviour
     private Player _player;
     private Trader _trader;
 
+    private const int NoTradeReputation = 0;
+    private const int FruitTradeRepuation = 1;
+    private const int ArmorTradeReputation = 2;
+
     private void OnEnable() => _player.ReputationChanged += CheckReputation;
 
     private void OnDisable() => _player.ReputationChanged -= CheckReputation;
@@ -19,13 +23,13 @@ public class TraderBehaviourSwitcher : MonoBehaviour
     {
         switch (playerReputation)
         {
-            case 0:
+            case NoTradeReputation:
                 _trader.SetTrade(new NoTrade());
                 break;
-            case 1:
+            case FruitTradeRepuation:
                 _trader.SetTrade(new FruitTrade());
                 break;
-            default:
+            case ArmorTradeReputation:
                 _trader.SetTrade(new ArmorTrade());
                 break;
         }

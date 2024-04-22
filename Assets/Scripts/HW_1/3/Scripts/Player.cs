@@ -2,12 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IBuyer
 {
     [SerializeField] private Button _increaseReputationButton;
 
-    public event Action<int> ReputationChanged; //Не совсем понимаю важности event. Без работает так же, нет?
-    //Если не сложно)
+    public event Action<int> ReputationChanged;
 
     private int reputation = 0;
 
@@ -20,6 +19,7 @@ public class Player : MonoBehaviour
     {
         reputation++;
 
-        ReputationChanged?.Invoke(reputation);
+        if (reputation > 0)
+            ReputationChanged?.Invoke(reputation);
     }
 }
