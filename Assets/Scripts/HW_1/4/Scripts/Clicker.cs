@@ -6,34 +6,35 @@ public class Clicker : MonoBehaviour
 
     private bool _enabled = false;
 
-    private void Start()
+    private void Awake()
     {
         _camera = Camera.main;
     }
 
     private void Update()
     {
-        if (         
-            _camera is null ||
-            Input.GetKey(KeyCode.Mouse0) == false ||
-            Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit) == false
-        )
-        {
-            return;
-        }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        if (_enabled == false)
-            return;
-
-        if (hit.transform.TryGetComponent<Ball>(out var ball))
+        if (Input.GetKey(KeyCode.Mouse0) && Physics.Raycast(ray, out hit, 100))
         {
-            ball.Click();
+            if (_enabled == false)
+                return;
+
+            if (hit.transform.TryGetComponent<Ball>(out var ball))
+            {
+                ball.Click();
+            }
         }
-        
     }
 
     public void Enable()
     {
         _enabled = true;
+    }
+
+    public void Disable()
+    {
+        _enabled = false;
     }
 }

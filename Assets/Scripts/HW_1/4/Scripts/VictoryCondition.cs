@@ -3,29 +3,40 @@ using System.Collections.Generic;
 
 public abstract class VictoryCondition
 {
-    public event Action Complete;
+    public event Action Completed;
+    public event Action Failed;
 
-    protected List<Ball> _balls = new List<Ball>();
+    protected IReadOnlyList<Ball> _balls = new List<Ball>();
 
-    public void Initialize(List<Ball> balls)
+    public virtual void Initialize(IReadOnlyList<Ball> balls)
     {
         _balls = balls;
 
         foreach (var ball in balls)
         {
-            ball.BallClicked += Condition;
+            ball.BallClicked += OnClicked;
         }
     }
 
-    protected abstract void Condition(Ball ball);
+    protected abstract void OnClicked(Ball ball);
+
+    protected void FailGame()
+    {
+        foreach (var ball in _balls)
+        {
+            ball.BallClicked -= OnClicked;
+        }
+
+        Failed?.Invoke();
+    }
 
     protected void CompleteGame()
     {
         foreach (var ball in _balls)
         {
-            ball.BallClicked -= Condition;
+            ball.BallClicked -= OnClicked;
         }
 
-        Complete?.Invoke();
+        Completed?.Invoke();
     }
 }

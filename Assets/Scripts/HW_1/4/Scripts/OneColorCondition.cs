@@ -8,7 +8,7 @@ public class OneColorCondition : VictoryCondition
 
     private int _count;
 
-    protected override void Condition(Ball ball)
+    protected override void OnClicked(Ball ball)
     {
         if (_firstColorChosen == false)
         {
@@ -19,7 +19,12 @@ public class OneColorCondition : VictoryCondition
         }
 
         if (ball.Color != _winColor)
-            return; //Либо проваливаем игру
+        {
+            FailGame();
+
+            return;
+        }
+            
 
         if (--_count == 0)
         {

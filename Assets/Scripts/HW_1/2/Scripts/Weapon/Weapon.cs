@@ -5,10 +5,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletPoint;
 
-    //public abstract string WeaponName;
-    //’отел прикрутить название имени дл€ оружи€, чтобы при смене в WeaponSwitcher выводил в консоль
-    //Ќе пон€л как грамотно сделать. ’отелось бы пон€ть)))
-
     private int _ammoInMag;
     protected int _ammo { get; private set; }
 

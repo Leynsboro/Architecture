@@ -6,6 +6,7 @@ public class Level : MonoBehaviour
     [SerializeField] private Button _oneColorButton;
     [SerializeField] private Button _allColorButton;
     [SerializeField] private GameObject _winText;
+    [SerializeField] private GameObject _failText;
 
     [SerializeField] private BallSpawner _ballSpawner;
     [SerializeField] private Clicker _clicker;
@@ -37,7 +38,8 @@ public class Level : MonoBehaviour
     private void StartGame()
     {
         _ballSpawner.SpawnBalls();
-        _victoryCondition.Complete += ShowWinText;
+        _victoryCondition.Completed += OnCompleteGame;
+        _victoryCondition.Failed += OnFailGame;
 
         _oneColorButton.gameObject.SetActive(false);
         _allColorButton.gameObject.SetActive(false);
@@ -51,9 +53,16 @@ public class Level : MonoBehaviour
         _clicker.Enable();
     }
 
-    private void ShowWinText()
+    private void OnCompleteGame()
     {
         _winText.SetActive(true);
+        _clicker.Disable();
+    }
+
+    private void OnFailGame()
+    {
+        _failText.SetActive(true);
+        _clicker.Disable();
     }
 
 }

@@ -1,10 +1,21 @@
+using System.Collections.Generic;
+
 public class AllColorCondition : VictoryCondition
 {
-    protected override void Condition(Ball ball)
-    {
-        _balls.Remove(ball);
+    private int _count;
 
-        if (_balls.Count == 0 )
+    public override void Initialize(IReadOnlyList<Ball> balls)
+    {
+        base.Initialize(balls);
+
+        _count = balls.Count;
+    }
+
+    protected override void OnClicked(Ball ball)
+    {
+        _count--;
+
+        if (_count-- == 0 )
         {
             CompleteGame();
         }
