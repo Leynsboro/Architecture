@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class SingleShotWeapon : Weapon
+public class SingleShotWeapon : Weapon, IReloadable
 {
+    public void Reload() => ReloadWeapon();
+
     public override void Shoot()
     {
-        if (_ammo > 0)
-        {
-            _ammo--;
-            Debug.Log("Осталось пуль " + _ammo);
-
+        if (IsCanShoot())
             CreateBullet();
-        } else
-        {
-            Debug.Log("Пули кончились");
-        }
+        else
+            Reload();
     }
+
 }

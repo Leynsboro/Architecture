@@ -1,32 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class TripleShootWeapon : Weapon
+public class TripleShootWeapon : Weapon, IReloadable
 {
-    private const int AMMO_PER_SHOOT = 3;
-    private const float PUASE_BETWEEN_SHOTS = 0.3f;
-    
+    private const int AmmoPerShoot = 3;
+    private const float PauseBetweenShots = 0.3f;
+
+    public void Reload() => ReloadWeapon();
+
     public override void Shoot()
     {
-        if (_ammo > AMMO_PER_SHOOT)
-        {
-            _ammo -= AMMO_PER_SHOOT;
-            Debug.Log("Осталось пуль " + _ammo);
-
+        if (IsCanShoot())
             StartCoroutine(PauseBetweenShotsCoroutine());
-        } else
-        {
-            Debug.Log("Пули кончились");
-        }
+        else
+            Reload();
     }
 
     private IEnumerator PauseBetweenShotsCoroutine()
     {
-        for (int i = 0; i < AMMO_PER_SHOOT; i++)
+        for (int i = 0; i < AmmoPerShoot; i++)
         {
             CreateBullet();
 
-            yield return new WaitForSeconds(PUASE_BETWEEN_SHOTS);
+            yield return new WaitForSeconds(PauseBetweenShots);
         }
     }
 }

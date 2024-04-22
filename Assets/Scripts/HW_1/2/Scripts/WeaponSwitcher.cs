@@ -20,17 +20,17 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchWeapon(_weapons[0]);
         }
 
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SwitchWeapon(_weapons[1]);
         }
 
-        if (Input.GetKeyDown("3"))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchWeapon(_weapons[2]);
         }
@@ -40,13 +40,15 @@ public class WeaponSwitcher : MonoBehaviour
     {
         foreach (Weapon weapon in _weapons)
         {
-            if (weapon == newWeapon) //Почему is не работает так и не понял
+            if (weapon == newWeapon)
             {
                 weapon.gameObject.SetActive(true);
                 _shooter.SetupWeapon(weapon);
             }
             else
+            {
                 weapon.gameObject.SetActive(false);
+            }     
         }
     }
 }
