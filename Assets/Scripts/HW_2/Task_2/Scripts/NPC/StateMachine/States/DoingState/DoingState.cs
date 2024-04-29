@@ -1,21 +1,46 @@
-public class DoingState : CalmState
+using UnityEngine;
+
+public abstract class DoingState : IState
 {
-    public DoingState(IStateSwitcher stateSwitcher, StateMachineData data, NPC character) : base(stateSwitcher, data, character)
+    protected StateMachineData Data;
+    protected readonly IStateSwitcher StateSwitcher;
+
+    private readonly NPC _character;
+
+    protected readonly DoingStateConfig _config;
+
+    protected float DoingTimer;
+
+    public DoingState(IStateSwitcher stateSwitcher, StateMachineData data, NPC character)
     {
+        StateSwitcher = stateSwitcher;
+        Data = data;
+        _character = character;
+        _config = character.Config.DoingStateConfig;
     }
 
-    public override void Enter()
+    protected NpcView View => _character.View;
+    protected CharacterController CharacterController => _character.CharacterController;
+
+    public virtual void Enter()
     {
-        base.Enter();
+        Debug.Log(GetType());
     }
 
-    public override void Exit()
+    public virtual void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    public override void Update()
+    public virtual void Update()
     {
-        throw new System.NotImplementedException();
+        DoingTimer -= Time.deltaTime;
+
+        if (DoingTimer <= 0)
+        {
+            EndOfDoing();
+        }
     }
+
+    protected abstract void EndOfDoing();
 }

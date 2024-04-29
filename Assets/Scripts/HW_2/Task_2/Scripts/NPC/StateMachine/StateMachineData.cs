@@ -16,5 +16,7 @@ public class StateMachineData
     {
         WorkPlace = points.WorkPlace.position;
         RestPlace = points.RestPlace.position;
+
+        CurrentTargetPlace = WorkPlace;
     }
 }

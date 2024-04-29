@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _doingStateConfig:
     <WorkingTime>k__BackingField: 6
-    <RestingTime>k__BackingField: 8
+    <RestingTime>k__BackingField: 3
   _movementStateConfig:
     <Speed>k__BackingField: 5
