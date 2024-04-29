@@ -1,2 +1,0 @@
-- NPC (Состояния: IDLE, Change Point, Follow, Attack, Back to position (когда отагрился), Killed)
-- Машина (Состояния: Stay, Stay turned, Ride, Ride crashed, Destroyed)
