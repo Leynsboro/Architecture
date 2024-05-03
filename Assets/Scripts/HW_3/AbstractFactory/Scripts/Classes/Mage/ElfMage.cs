@@ -1,4 +1,4 @@
-public class ElfMage : Mage, Elf
+public class ElfMage : Mage, IElf
 {
 
 }

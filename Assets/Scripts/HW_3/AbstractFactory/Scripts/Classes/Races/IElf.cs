@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Elf
+public interface IElf: IRace
 {
     public void AddElementalDamage()
     {

@@ -1,3 +1,3 @@
-public class ElfPaladin : Paladin, Elf
+public class ElfPaladin : Paladin, IElf
 {
 }

@@ -1,4 +1,4 @@
-public class OrkMage : Mage, Ork
+public class OrkMage : Mage, IOrk
 {
 
 }

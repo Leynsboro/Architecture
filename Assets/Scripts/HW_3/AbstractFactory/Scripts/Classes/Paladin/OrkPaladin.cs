@@ -1,4 +1,4 @@
-public class OrkPaladin : Paladin, Ork
+public class OrkPaladin : Paladin, IOrk
 {
     
 }

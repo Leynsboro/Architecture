@@ -1,4 +1,4 @@
-public abstract class NpcFactory<T> where T : Class
+public abstract class NpcFactory<T> where T : IRace
 {
-    public abstract T Spawn(RaceType raceType);
+    public abstract T Spawn(ClassType classType);
 }

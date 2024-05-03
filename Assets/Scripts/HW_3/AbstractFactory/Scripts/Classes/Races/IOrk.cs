@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface Ork
+public interface IOrk: IRace
 {
     public void UpArmor()
     {
